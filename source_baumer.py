@@ -7,6 +7,18 @@ from source_base import ImageSource
 
 CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json")
 
+# Megapixel to resolution mapping (width x height)
+MEGA_PIXEL_RESOLUTIONS = {
+    1: (1280, 800),
+    2: (1920, 1080),
+    3: (2048, 1536),
+    5: (2592, 1944),
+    6: (2976, 2000),
+    8: (3840, 2160),
+    12: (4000, 3000),
+    20: (5472, 3648),
+}
+
 
 def load_config():
     """Load Baumer camera configuration from config.json."""
@@ -53,6 +65,19 @@ class BaumerSource(ImageSource):
         """Apply settings from config.json to the connected camera."""
         img_fmt = self.config.get("image_format", {})
         brightness = self.config.get("brightness", {})
+
+        # Override resolution if mega_pixels is set in config.json
+        mega_pixels = self.config.get("mega_pixels")
+        if mega_pixels:
+            mp = int(mega_pixels)
+            if mp in MEGA_PIXEL_RESOLUTIONS:
+                width, height = MEGA_PIXEL_RESOLUTIONS[mp]
+                img_fmt["width"] = width
+                img_fmt["height"] = height
+                print(f"Resolution set to {width}x{height} ({mp} MP)")
+            else:
+                available = sorted(MEGA_PIXEL_RESOLUTIONS.keys())
+                print(f"Warning: {mp} MP not supported. Available: {available}")
 
         try:
             # Image format / ROI

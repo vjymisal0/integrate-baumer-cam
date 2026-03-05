@@ -1,13 +1,14 @@
 {
     "baumer": {
+        "mega_pixels": 20,
         "image_format": {
-            "width": 1920,
-            "height": 1080,
+            "width": 2976,
+            "height": 2000,
             "x_offset": 0,
             "y_offset": 0
         },
         "brightness": {
-            "exposure_time": 40000.00,
+            "exposure_time": 250000.00,
             "gain": 1.00,
             "target_brightness": 128
         }

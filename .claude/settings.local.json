@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:\\\\Users\\\\shash\\\\Desktop\\\\integrate-baumer-cam\" && .venv/Scripts/python.exe -m pip install \"pymodbus>=3.7.0\" 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\shash\\\\Desktop\\\\integrate-baumer-cam\" && uv add \"pymodbus>=3.7.0\" 2>&1)",
+      "Bash(ping -n 3 192.168.7.120 2>&1)",
+      "Bash(ipconfig 2>&1 | findstr /i \"IPv4\\\\|Subnet\\\\|adapter\")",
+      "Bash(ipconfig 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\shash\\\\Desktop\\\\integrate-baumer-cam\" && .venv/Scripts/python.exe -c \"\nfrom source_webcam import list_webcams\ncams = list_webcams\\(\\)\nif cams:\n    print\\('Available webcams:'\\)\n    for idx, name in cams:\n        print\\(f'  [{idx}] {name}'\\)\nelse:\n    print\\('No webcams found.'\\)\n\" 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\shash\\\\Desktop\\\\integrate-baumer-cam\" && uv run python main.py 2>&1)"
+    ]
+  }
+}
